@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+  <html lang="en">
+    <head>
+	
+<!-- #
+Response for discussion board post for SCKANS SMGT341
+Student: Joshua Crowley
+Last Updated: 27 Oct
+Description: This is a really quick creation for a Form that I found and modified from company7.com 
+I take no credit for their work, and merely used it as a template in which I edited and made it my own
+http://www.company7.com/library/C7_upscalc.html
+-->
+
+<script language="JavaScript">
+<!--
+
+// CED subroutine for cleaning up JavaScript rounding errors 
+// to any reasonable number of decimal places 5/5/1997 last mod 2/19/2004
+// round for decimal of (value of precision) places, default is 3
+// This routine can be used to pass a number and a number for precision
+// or just a number only, that is to be rounded to a set number of decimal
+// places. This routine supports leading and training zeros, leading and
+// trailing spaces, and padding. To prevent errors, pass variables as a string.
+
+function perRound(num, precision) {
+	var precision = 3; //default value if not passed from caller, change if desired
+	// remark if passed from caller
+	precision = parseInt(precision); // make certain the decimal precision is an integer
+    var result1 = num * Math.pow(10, precision);
+    var result2 = Math.round(result1);
+    var result3 = result2 / Math.pow(10, precision);
+    return zerosPad(result3, precision);
+}
+
+function zerosPad(rndVal, decPlaces) {
+    var valStrg = rndVal.toString(); // Convert the number to a string
+    var decLoc = valStrg.indexOf("."); // Locate the decimal point
+    // check for a decimal 
+    if (decLoc == -1) {
+        decPartLen = 0; // If no decimal, then all decimal places will be padded with 0s
+        // If decPlaces is greater than zero, add a decimal point
+        valStrg += decPlaces > 0 ? "." : "";
+    }
+    else {
+        decPartLen = valStrg.length - decLoc - 1; // If there is a decimal already, only the needed decimal places will be padded with 0s
+    }
+     var totalPad = decPlaces - decPartLen;    // Calculate the number of decimal places that need to be padded with 0s
+    if (totalPad > 0) {
+        // Pad the string with 0s
+        for (var cntrVal = 1; cntrVal <= totalPad; cntrVal++) 
+            valStrg += 0;
+        }
+    return valStrg;
+}
+// send the value in as "num" in a variable
+
+// clears field of default value
+function clear_field(field) {
+		if (field.value==field.defaultValue) {
+			field.value=''
+		}
+	}
+
+function calcUPS(form) {
+
+var v=parseFloat(upscalc.v.value);
+var monitor=parseFloat(upscalc.monitor.value);
+var cpu=parseFloat(upscalc.cpu.value);
+var printer=parseFloat(upscalc.printer.value);
+var wmonitor=parseFloat(upscalc.wmonitor.value);
+var wcpu=parseFloat(upscalc.wcpu.value);
+var wprinter=parseFloat(upscalc.wprinter.value);
+var VAtmp = 0;
+
+upscalc.minsize.value=Math.round(v * cpu + wcpu * 1.4 + v * monitor + wmonitor * 1.4 + v * printer + wprinter * 1.4)
+
+VAtmp =Math.round(v * cpu * 1.25 + wcpu * 1.4 * 1.25 + v * monitor * 1.25 + wmonitor * 1.4 * 1.25 + v * printer * 1.25 + wprinter * 1.4 * 1.25)
+
+if (VAtmp > 0 && VAtmp <= 250) {
+upscalc.VA.value = 250;  
+}
+
+if (VAtmp >= 250 && VAtmp <= 350) {
+upscalc.VA.value = 350;  
+}
+
+if (VAtmp >= 350 && VAtmp <= 500) {
+upscalc.VA.value = 500;  
+}
+
+if (VAtmp >= 500 && VAtmp <= 650) {
+upscalc.VA.value = 650;  
+}
+
+if (VAtmp >= 650 && VAtmp <= 750) {
+upscalc.VA.value = 750;  
+}
+
+if (VAtmp >= 750 && VAtmp <= 1000) {
+upscalc.VA.value = 1000;  
+}
+
+if (VAtmp >= 1000 && VAtmp <= 1250) {
+upscalc.VA.value = 1250;  
+}
+
+if (VAtmp >= 1250 && VAtmp <= 1400) {
+upscalc.VA.value = 1400;  
+}
+
+if (VAtmp >= 1400 && VAtmp <= 1750) {
+upscalc.VA.value = 1750;  
+}
+
+if (VAtmp >= 1750 && VAtmp <= 2000) {
+upscalc.VA.value = 2000;  
+}
+
+if (VAtmp > 2000) {
+upscalc.VA.value = "Out Of Range";  
+}
+}
+
+//-->
+</script>
+</p>
+<form name="upscalc">
+<table border="1" bgcolor="#FBFBEF" cellpadding="2" cellspacing="0">
+<tbody>
+<tr>
+<td colspan="4" align="center"><b>AC Power (Mains) Line Voltage</b></td>
+</tr>
+<tr>
+<td colspan="2">System Voltage Requirement</td>
+<td colspan="2">&nbsp;&nbsp;<input type="text" name="v" size="8" value="120" /> volts (all devices)</td>
+</tr>
+<tr>
+<td colspan="4" align="center"><b>Power Load Values of Required Critical Components</b></td>
+</tr>
+<tr>
+<td colspan="2" align="center">Device</td>
+<td colspan="2" align="center">Load in Watts or Amps</td>
+</tr>
+<tr>
+<td colspan="2">Monitor</td>
+<td align="center"><input type="text" name="wmonitor" size="8" value="0" onfocus="clear_field(this)" />watts</td>
+<td align="center"><input type="text" name="monitor" size="8" value="0" onfocus="clear_field(this)" />amps</td>
+</tr>
+<tr>
+<td colspan="2">CPU</td>
+<td align="center"><input type="text" name="wcpu" size="8" value="0" onfocus="clear_field(this)" />watts</td>
+<td align="center"><input type="text" name="cpu" size="8" value="0" onfocus="clear_field(this)" />amps</td>
+</tr>
+<tr>
+<td colspan="2">Printer</td>
+<td align="center"><input type="text" name="wprinter" size="8" value="0" onfocus="clear_field(this)" />watts</td>
+<td align="center"><input type="text" name="printer" size="8" value="0" onfocus="clear_field(this)" />amps</td>
+</tr>
+<tr>
+<td colspan="4" align="center"><input type="button" value="Calculate Results" onclick="calcUPS(upscalc)" /> &nbsp;&nbsp;&nbsp; <input type="Reset" value="Clear Values" /></td>
+</tr>
+<tr>
+<td colspan="4" align="center"><b>Calculated Results</b></td>
+</tr>
+<tr>
+<td colspan="2" align="center">Calculation Objective</td>
+<td colspan="2" align="center">VA Rating</td>
+</tr>
+<tr>
+<td colspan="2">Minimum UPS Capability</td>
+<td colspan="2"><input type="text" name="minsize" size="12" readonly="readonly" /> VoltAmps</td>
+</tr>
+<tr>
+<td colspan="2">Suggested UPS Capability</td>
+<td colspan="2"><input type="text" name="VA" size="12" readonly="readonly" /> VoltAmps</td>
+</tr>
+</tbody>
+</table>
+</form>
+<p><br /><br /><br /></p>
+
+</body>
+</html>

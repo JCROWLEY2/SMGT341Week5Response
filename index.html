@@ -6,7 +6,7 @@
 <!-- #
 Response for discussion board post for SCKANS SMGT341
 Student: Joshua Crowley
-Last Updated: 27 Oct
+Last Updated: 28 Oct
 Description: This is a really quick creation for a Form that I found and modified from company7.com 
 I take no credit for their work, and merely used it as a template in which I edited and made it my own
 http://www.company7.com/library/C7_upscalc.html
@@ -67,7 +67,6 @@ function clear_field(field) {
 			field.value=''
 		}
 	}
-
 function calcWatts(form) {
 
 var v=parseFloat(upscalc.v.value);
@@ -75,7 +74,7 @@ var monitor=parseFloat(upscalc.monitor.value);
 var cpu=parseFloat(upscalc.cpu.value);
 var printer=parseFloat(upscalc.printer.value);
 
-upscalc.minsize.value=Math.round((v * cpu) + (v * monitor) + (v * printer))
+upscalc.minsize.value=Math.round((v * cpu) + (v * monitor) + (v * printer));
 
 }
 
@@ -84,12 +83,12 @@ function calcAmps(form) {
 var optime=parseFloat(acalc.optime.value);
 var inverteff=parseFloat(acalc.inverteff.value);
 var battv=parseFloat(acalc.battv.value);
-var battamp=parseFloat(acalc.battamp.value);
 var watt1=parseFloat(acalc.watt1.value);
 var watt2=parseFloat(acalc.watt2.value);
 var watt3=parseFloat(acalc.watt3.value);
 
-acalc.ampUPS.value=Math.round((inverteff * battv * battamp)/((watt1 + watt2 + watt3) * (optime * .0165)))
+acalc.ampUPS.value=Math.round(((watt1+watt2+watt3)*(optime*0.0165))/(inverteff*battv));
+//Math.round((inverteff * battv * battamp)/((watt1 + watt2 + watt3) * (optime * 0.0165)));
 
 }
 
@@ -97,7 +96,7 @@ acalc.ampUPS.value=Math.round((inverteff * battv * battamp)/((watt1 + watt2 + wa
 
 
 <div class="container">
-	<section><h1>Week 5 Response</h1></section>
+  <section><h1>Week 5 Response</h1></section>
 
 <section>
 
@@ -156,7 +155,7 @@ System 2: (360 * 2) + 480 = <strong>1,200 Watts</strong><br>
 Monitor: 3 amps - 3 * 120 = 360 Watts<br>
 CPU: 4 amps - 4 * 120 = 480 Watts<br>
 printer: 3 amps - 3 * 120 = 360 Watts<br>
-	<br>
+  <br>
 System 3: (480 * 2) + 360 =<strong>1,320 Watts</strong><br>
 Monitor: 3 amps - 3 * 120 = 360 Watts<br>
 CPU: 4 amps - 4 * 120 = 480 Watts<br>
@@ -173,19 +172,15 @@ printer: 4amps - 4 * 120 = 480 Watts<br>
 </tr>
 <tr>
 <td colspan="2">Desired Run Time</td>
-<td colspan="2"><input type="text" name="inveff" size="8" value="15"> Desired Time in Minutes</td>
+<td colspan="2"><input type="text" name="optime" size="8" value="15"> Desired Time in Minutes</td>
 </tr>
 <tr>
 <td colspan="2">Inverter Efficiency</td>
-<td colspan="2"><input type="text" name="inveff" size="8" value=".90"> Values in Decimals</td>
+<td colspan="2"><input type="text" name="inverteff" size="8" value=".90"> Values in Decimals</td>
 </tr>
 <tr>
 <td colspan="2">Battery Voltage</td>
 <td colspan="2"><input type="text" name="battv" size="8" value="12"> Voltage of the Battery</td>
-</tr>
-<tr>
-<td colspan="2">Battery Amp Hour</td>
-<td colspan="2"><input type="text" name="battamp" size="8" value="12.5"> Default 12.5</td>
 </tr>
 <tr>
 <td colspan="4" align="center"><b>Power Load Values of Required Systems</b></td>
